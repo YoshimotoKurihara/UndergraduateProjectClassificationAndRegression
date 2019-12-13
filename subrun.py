@@ -1,18 +1,11 @@
 # coding:utf-8
-#export PYTHONPATH=/usr/local/lib/python3.6/dist-packages
-#毎回これを実行
-#インタープリタはpython3.7.4のbase condaのやつを使う
 
-#データ正規化　バッチ正規化　学習率のスケジューラ
 import numpy as np
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
 import os
 
-#同ディレクトリ内の別のファイルからのクラスの読み込み
 from submodel import AlexNet, PositionNet
 from subdataloader import Dataloaders
 from subtrainer import MyTrainer
