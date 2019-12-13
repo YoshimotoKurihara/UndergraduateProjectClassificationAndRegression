@@ -33,7 +33,7 @@ def main():
     trainer1 = MyTrainer(model1, dataloaders, optimizer1, device, "Classification")
     trainer2 = MyTrainer(model2, dataloaders, optimizer2, device, "Regression")
 
-    trainer1.run(NUM_EPOCH)#
+    trainer1.run(NUM_EPOCH)
     trainer2.run(NUM_EPOCH)
 
 main()#
