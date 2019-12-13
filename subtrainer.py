@@ -1,7 +1,6 @@
 # coding:utf-8
 from fastprogress import master_bar, progress_bar
 import matplotlib.pyplot as plt
-
 import numpy as np
 import torch
 import torch.nn as nn
@@ -69,14 +68,8 @@ class MyTrainer:
             if self.task == "Regression":
                 pos_list = batch["pos"].to(self.device)
                 positions = self.model(image_list)
-                # classes = torch.view(-1, classes)
                 pos_list=pos_list.view(-1,6)
                 loss = self.mse_loss(positions, pos_list)
-
-            '''
-            loss=CustomLossFunction()
-            loss.forward(classes, positions, class_list, pos_list)
-            '''
 
             # backward
             if train:
@@ -100,7 +93,7 @@ class MyTrainer:
             if self.task == "Classification":
                 self.val_acc_list.append(total_acc/ (i + 1))
 
-        train = "train" if train else "test" #"valid"
+        train = "train" if train else "test" 
         print("[Info] epoch {}@{}: loss = {}".format(self.epoch, train, total_loss/ (i + 1)))
         if self.task == "Classification":
             print("[Info] epoch {}@{}: loss = {}, acc = {}".format(self.epoch, train, total_loss/ (i + 1), total_acc/(i + 1)))
