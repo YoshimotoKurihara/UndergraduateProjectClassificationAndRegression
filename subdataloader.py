@@ -27,18 +27,8 @@ class Dataloaders:
 
     def prepare_dataloaders(self):
         np.random.seed(0)
-        """numpy.random.seed(seed=シードに用いる値) をシード (種) を指定することで、
-        発生する乱数をあらかじめ固定することが可能です。乱数を用いる分析や処理で、再現性が必要な場合などに用いられます。
-        seed番号で一度作った乱数を何度でも利用できる"""
         torch.manual_seed(0)
-        """
-        torch.seed（）[SOURCE]
-        乱数を生成するためのシードを非決定的な乱数に設定します。 RNGのシードに使用される64ビットの数値を返します。
-​
-        torch.manual_seed（seed）[SOURCE]
-        乱数を生成するためのシードを設定します。 torch.Generatorオブジェクトを返します。
-        """
-        
+               
         data_size = len(self.images)
         data_ids = np.arange(data_size)#
         np.random.shuffle(data_ids)#
@@ -72,13 +62,13 @@ class MyDataset(torch.utils.data.Dataset):
         index = self.ids[idx]
         image = self.images[index] 
         
-        # 画像ファイルパスから画像を読み込みます。
+        # 画像の読み込みます。
         with open(image, 'rb') as f:
             image = Image.open(f)
             image = image.convert('RGB')
             #image=torch.FloatTensor(image)
 
-        # 前処理がある場合は前処理をいれます。
+        # 前処理
         if self.transform is not None:
             image = self.transform(image)
             #image=torch.FloatTensor(image) #torch.from_numpy(image)
