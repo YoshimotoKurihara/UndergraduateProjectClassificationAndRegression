@@ -12,7 +12,7 @@ class Encoder(nn.Module):
             # at /pytorch/aten/src/TH/generic/THTensorMath.cpp:197
         
             nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
-            #第一引数が入力チャネル　第二引数が出力チャネル数　縦かける横は自分で計算しないといけない
+            #nn.Conv2d(入力チャネル　出力チャネル数...)　縦横は自分で計算
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Conv2d(64, 192, kernel_size=5, padding=2),
@@ -45,8 +45,7 @@ class Decoder(nn.Module):
             nn.Linear(4096, 4096),
             nn.ReLU(inplace=True),
             nn.Linear(4096, 6)  #nn.Linear(4096, 座標数)
-            #ここが最後の出力層　ここのクラス分類を連続値にして90個出力
-
+            #ここが最後の出力層　ここをfloatとして90個出力
         )
     def forward(self, x):
         y = self.decode_layers(x)
