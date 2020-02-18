@@ -6,9 +6,9 @@ import torch.nn as nn
 import torch.optim as optim
 import os
 
-from submodel import AlexNet, PositionNet
-from subdataloader import Dataloaders
-from subtrainer import MyTrainer
+from model import AlexNet, PositionNet
+from dataloader import Dataloaders
+from trainer import MyTrainer
 
 def main():
     IMAGE_PATH = "/home/gonken2019/Desktop/subProject/dataset45"#"/home/gonken2019/Desktop/subProject/images"#
